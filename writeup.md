@@ -117,7 +117,8 @@ Deviation and Radius of Curvature are printed on each frame.
 
 #### Final video
 
-![Video](vid.gif?raw=true)
+![Video](vid.gif?raw=true)  
+Output video file: video/processed_project_video.mp4
 
 #### Optimization attempt
 
