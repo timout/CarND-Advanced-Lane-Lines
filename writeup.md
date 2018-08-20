@@ -116,7 +116,7 @@ Deviation and Radius of Curvature are printed on each frame.
 
 #### Final video
 
-[![Video](vid.gif?raw=true)
+![Video](vid.gif?raw=true)
 
 
 ### Discussion
