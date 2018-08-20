@@ -66,7 +66,8 @@ This was done as preparation step for lane detection.
 * Select only a hard-coded region of interest using a binary mask.
 * Transform the image from the car camera's perspective to a birds-eye-view perspective.
 * Hard-code the source and destination polygon coordinates and obtain the matrix that maps them onto each other using `cv2.getPerspective`.
-* Warp the image to the new birds-eye-view perspective using `cv2.warpPerspective` and the perspective transform matrix we just obtained.
+* Warp the image to the new birds-eye-view perspective using `cv2.warpPerspective` and the perspective transform matrix we just obtained.  
+
 #### Example of a transformed image
 ![](saved_images/warp_sample.png) 
 
@@ -74,11 +75,11 @@ This was done as preparation step for lane detection.
 
 #### Identify lane line pixels
 
-* Divide the image into `n` horizontal strips (steps) of equal height.
+* Divide the image into `n` horizontal windows of equal height.
 * For each step, take a count of all the pixels at each x-value within the step window using a histogram generated from `np.sum`.
 * Smoothen the histogram using `scipy.signal.medfilt`.
 * Remove anomalies for each line
-* Use weighed average to find x coordinate for left and right lines and use middle of a strip as y.
+* Use weighed average to find x coordinate for left and right lines and use middle of a window as y.
 * Add to collection of lane line pixels.  
 (`LinePoints` class)
 
@@ -96,7 +97,7 @@ Deviation and Radius of Curvature are printed on each frame.
 #### Plot result back down onto tho road such that the lane area is identified clearly.
 
 * Warp lane lines back onto original image using `cv2.warpPerspective`.
-* Combine lane lines with original image (version corrected for distortion) using `cv2.addWeighted`.  
+* Combine lane lines with original image using `cv2.addWeighted`.  
 
 #### Example of a lane histogram
 ![](saved_images/lane_histogram.png) 
@@ -127,8 +128,8 @@ Implemented using the following methods:
 * LaneDetector.detect_opt
 * LaneDetector.find_lane_opt  
 
-It was a very simple attempt to optimize so the result is not very impressive but acceptable.  
-Processing time was about 1/5 time faster and quality slightly worse.  
+It was a very simple attempt (and not very successful) to optimize so the result was not very impressive but kind of acceptable.  
+Processing time was about 1/5 time faster and quality was worse.  
 
 Result video:  
 ![Video](vid_opt.gif?raw=true)  
@@ -138,7 +139,7 @@ Result video:
 Main idea of the project is to shows what we can archive by using explicit computer vision and results are very impresive.  
 But by any means that solution is not ideal and I see the following problems with my implementation.  
 * Hard-Coded values. To make it works on all roads values needs to be calculated dynamically.
-* Performance. To make it works on smaller devices the solution needs to be optimized.
+* Performance. To make it works the solution needs to be optimized.
 * It needs to be improved to handle various driving conditions like: 
   - Poor lighting conditions
   - Hills
