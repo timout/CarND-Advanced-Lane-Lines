@@ -118,6 +118,20 @@ Deviation and Radius of Curvature are printed on each frame.
 
 ![Video](vid.gif?raw=true)
 
+#### Optimization attempt
+
+The idea is to do full recalculation for every 5th frame.  
+Implemented using the following methods:  
+* LanePoints.build_head / LanePoints.build
+* Line.build_opt / Line.build
+* LaneDetector.detect_opt
+* LaneDetector.find_lane_opt  
+
+It was a very simple attempt to optimize so the result is not very impressive but acceptable.  
+Processing time was about 1/5 time faster and quality slightly worse.  
+
+Result video:  
+![Video](vid_opt.gif?raw=true)  
 
 ### Discussion
 
